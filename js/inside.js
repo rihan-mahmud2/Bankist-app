@@ -5,13 +5,10 @@ document.getElementById("btn-deposit").addEventListener("click", function () {
   const textValue = text.value;
   const currentDeposit = currentDepositElement.innerText;
   const totalBalace = totalBalaceField.innerText;
-  ;
-  
-    currentDepositElement.innerText =
-      parseInt(textValue) + parseInt(currentDeposit);
-    totalBalaceField.innerText =
-      parseFloat(totalBalace) + parseFloat(currentDeposit);
-  
+  currentDepositElement.innerText =
+    parseInt(textValue) + parseInt(currentDeposit);
+  totalBalaceField.innerText =
+    parseFloat(totalBalace) + parseFloat(currentDeposit);
 });
 
 document.getElementById("btn-withdraw").addEventListener("click", function () {
@@ -20,11 +17,12 @@ document.getElementById("btn-withdraw").addEventListener("click", function () {
   const totalBalaceField = document.getElementById("total-balance");
   const withdrawValue = withdrawElement.value;
   const totalBalace = totalBalaceField.innerText;
-  if (totalBalace > withdrawValue) {
-    totalBalaceField.innerText =
-      parseFloat(totalBalace) - parseFloat(withdrawValue);
-    displayWithdraw.innerText = withdrawValue;
-  } else {
-    alert("Your Balance are not sufficient");
+  withdrawElement.innerText = "";
+  if (totalBalace < withdrawValue) {
+    alert("Your balance is not sufficient");
+    return;
   }
+  totalBalaceField.innerText =
+    parseFloat(totalBalace) - parseFloat(withdrawValue);
+  displayWithdraw.innerText = withdrawValue;
 });
