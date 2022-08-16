@@ -17,12 +17,20 @@ document.getElementById("btn-withdraw").addEventListener("click", function () {
   const totalBalaceField = document.getElementById("total-balance");
   const withdrawValue = withdrawElement.value;
   const totalBalace = totalBalaceField.innerText;
+  const currentWithdraw = displayWithdraw.innerText;
   withdrawElement.innerText = "";
-  if (totalBalace < withdrawValue) {
+  if (isNaN(withdrawValue)) {
+  alert('Provide a valid number')
+    return
+  
+  }
+  if (parseFloat(withdrawValue) > parseFloat(totalBalace)) {
     alert("Your balance is not sufficient");
     return;
   }
+
   totalBalaceField.innerText =
     parseFloat(totalBalace) - parseFloat(withdrawValue);
-  displayWithdraw.innerText = withdrawValue;
+  displayWithdraw.innerText =
+    parseFloat(withdrawValue) + parseFloat(currentWithdraw);
 });
